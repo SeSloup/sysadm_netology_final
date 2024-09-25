@@ -1,1 +1,0 @@
-external_ip_address_vm_1 = "89.169.145.31"
