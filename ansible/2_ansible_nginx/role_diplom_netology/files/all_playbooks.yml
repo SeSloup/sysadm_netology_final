@@ -1,0 +1,4 @@
+---
+- import_playbook: ./nginx/ansible_nginx_playbook.yaml
+- import_playbook: ./elasticsearch/elasticsearch_playbook.yaml
+- import_playbook: ./kibana/kibana_playbook.yaml

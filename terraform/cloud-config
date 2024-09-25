@@ -1,0 +1,24 @@
+#cloud-config
+package_upgrade: true
+package_update: true
+packages:
+  - sudo
+  - ufw
+  - docker.io 
+  - zabbix-agent
+
+runcmd:
+  - [ sh, -xc, echo "gekasologub  ALL=(ALL:ALL)   NOPASSWD:ALL" >> /etc/sudoers]
+
+users:  
+  - name: gekasologub
+    gecos: Ansible User
+    groups: users, docker
+    #passwd: netology
+    #lock_passwd: false
+    shell: /bin/bash
+    sudo: ALL=(ALL) NOPASSWD:ALL
+    ssh-authorized-keys:
+      - ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIb5w5fjQHiCXs7Wkxd8BZvcact/uoyrkG75gFpxJDiJ gekasologub@pop-os
+
+    #no_ssh_fingerprints: true

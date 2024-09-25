@@ -1,0 +1,18 @@
+filebeat.inputs:
+- type: log
+  enabled: true
+  
+filebeat.modules:  
+- module: nginx
+  access:
+    enabled: true
+    var.paths: ["/var/log/nginx/access.log*"]
+  error:
+    enabled: true
+    var.paths: ["/var/log/nginx/error.log*"]
+
+
+output.elasticsearch:
+  hosts: ["vm-elk.ru-central1.internal:9200"]
+setup.kibana:
+  host: "vm-elk.ru-central1.internal:5601"

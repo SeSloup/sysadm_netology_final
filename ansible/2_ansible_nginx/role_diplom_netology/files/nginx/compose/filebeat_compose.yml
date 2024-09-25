@@ -1,0 +1,24 @@
+version: "3.3"
+
+services:
+  filebeat:
+    container_name: filebeat_nginx
+    build:
+      context: ./filebeat/
+    restart: on-failure
+    command: --strict.perms=false
+    user: root
+    ports:
+      - 9200:9200
+    configs:
+      - source: fb_config
+        target: /usr/share/filebeat/filebeat.yml
+    volumes:
+      - ./filebeat/filebeat_data:/usr/share/filebeat/data
+      - /var/lib/docker:/var/lib/docker:ro
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /var/log/nginx:/var/log/nginx
+
+configs:
+  fb_config:
+    file: ./filebeat/filebeat_cnf/filebeat.yml

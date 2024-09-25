@@ -1,0 +1,8 @@
+- name: Configure nginx
+  hosts: elk
+  remote_user: gekasologub
+  become: true
+  tasks:
+    - name: test
+      ping:
+      

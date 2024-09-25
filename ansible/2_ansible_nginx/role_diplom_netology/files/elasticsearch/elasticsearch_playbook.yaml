@@ -1,0 +1,50 @@
+---
+- name: Configure nginx
+  hosts: elk
+  remote_user: gekasologub
+  become: true
+  vars:
+    ansible_python_interpreter: /usr/bin/python3
+  tasks:
+    - name: Enable UFW
+      community.general.ufw:
+        state: enabled
+        
+    - name: Allow all access to tcp port 80
+      ufw:
+        rule: allow
+        port: '9200'
+        proto: tcp
+        
+    - name: Allow all access to tcp port 22
+      ufw:
+        rule: allow
+        port: ssh
+        proto: tcp
+
+    - name: Install docker-compose
+      get_url:
+        url: https://github.com/docker/compose/releases/download/1.29.2/docker-compose-Linux-x86_64
+        dest: /usr/local/bin/docker-compose
+        mode: 'u+x,g+x'
+        
+    - name: Change file ownership, group and permissions
+      ansible.builtin.file:
+        path: /usr/local/bin/docker-compose
+        owner: gekasologub
+        group: gekasologub
+        
+    - name: copy compose
+      ansible.builtin.template:
+        src: compose/elasticsearch_compose.yml
+        dest: /home/gekasologub/elasticsearch_compose.yml
+        
+    - name: Run a command docker-compose
+      ansible.builtin.shell: 
+        cmd: docker-compose -f elasticsearch_compose.yml up -d
+        chdir: /home/gekasologub
+        executable: /bin/bash
+        
+
+
+      

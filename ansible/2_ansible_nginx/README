@@ -1,0 +1,9 @@
+ansible-galaxy init role_diplom_netology
+
+cp -R ./role_diplom_netology /etc/ansible/roles/
+
+su gekasologub
+
+ansible-playbook --check /etc/ansible/roles/role_diplom_netology/files/ansible_test_playbook.yaml
+
+ansible-playbook --private-key=/home/gekasologub/.ssh/id_ed25519  --ssh-common-args='-o StrictHostKeyChecking=no' /etc/ansible/roles/role_diplom_netology/files/ansible_nginx_playbook.yaml 

@@ -1,0 +1,2 @@
+0) cp ./ansible.cfg hosts inventory /etc/ansible/
+1) ansible bastion_netology -m ping

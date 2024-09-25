@@ -1,0 +1,26 @@
+[jump]
+bastion_netology
+
+[elk]
+vm-elk.ru-central1.internal
+[elk:vars]
+ansible_ssh_common_args='-o ProxyCommand="ssh -o StrictHostKeyChecking=accept-new -W %h:22 -q bastion_netology"'
+
+[kibana]
+vm-kibana.ru-central1.internal
+[kibana:vars]
+ansible_ssh_common_args='-o ProxyCommand="ssh -o StrictHostKeyChecking=accept-new -W %h:22 -q bastion_netology"'
+
+[zabbix]
+vm-zabbix.ru-central1.internal
+[zabbix:vars]
+ansible_ssh_common_args='-o ProxyCommand="ssh -o StrictHostKeyChecking=accept-new -W %h:22 -q bastion_netology"'
+
+
+[nginx]
+vm-nginx-1.ru-central1.internal
+vm-nginx-2.ru-central1.internal
+[nginx:vars]
+ansible_ssh_common_args='-o ProxyCommand="ssh -o StrictHostKeyChecking=accept-new -W %h:22 -q bastion_netology"'
+
+
