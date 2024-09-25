@@ -10,7 +10,7 @@ services:
     user: root
     ports:
       - 9200:9200
-    configs:
+    config:
       - source: fb_config
         target: /usr/share/filebeat/filebeat.yml
     volumes:
@@ -19,6 +19,6 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
       - /var/log/nginx:/var/log/nginx
 
-configs:
+config:
   fb_config:
     file: ./filebeat/filebeat_cnf/filebeat.yml
