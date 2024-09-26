@@ -62,14 +62,26 @@
         src: ./compose/
         dest: /home/gekasologub/
         
-    - name: Run a command chmod go-w filebeat.yml
-      ansible.builtin.shell: 
-        cmd: sudo chmod go-w filebeat.yml
-        chdir: /home/gekasologub/filebeat/filebeat_cnf
-        executable: /bin/bash     
+    - name: Change permission on myScript.sh file
+      file:
+        path: /home/gekasologub/filebeat/filebeat_cnf/filebeat.yml
+        state: file
+        owner: root
+        group: root
+        mode: 0755
         
     - name: Run a command docker-compose
       ansible.builtin.shell: 
         cmd: docker-compose -f filebeat_compose.yml up -d
         chdir: /home/gekasologub
         executable: /bin/bash
+
+    - name: zabbix_agent.conf
+      copy:
+        src: zabbix_agent.conf
+        dest: /etc/zabbix/
+
+    - name: restart service zabbix-agent
+      ansible.builtin.service:
+        name: zabbix-agent        
+        state: restarted

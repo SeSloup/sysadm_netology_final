@@ -1,6 +1,6 @@
 ---
 - name: Configure nginx
-  hosts: kibana
+  hosts: zabbix
   remote_user: gekasologub
   become: true
   vars:
@@ -13,10 +13,10 @@
       community.general.ufw:
         state: enabled
         
-    - name: Allow all access to tcp port 5601
+    - name: Allow all access to tcp port 10051
       ufw:
         rule: allow
-        port: '5601'
+        port: '10051'
         proto: tcp
         
     - name: Allow all access to tcp port 22
@@ -38,12 +38,12 @@
         group: gekasologub
         
     - name: copy compose
-      ansible.builtin.template:
-        src: compose/kibana_compose.yml
-        dest: /home/gekasologub/kibana_compose.yml
+      copy:
+        src: zabbix.zip
+        dest: /home/gekasologub/
         
     - name: Run a command docker-compose
       ansible.builtin.shell: 
-        cmd: docker-compose -f kibana_compose.yml up -d
-        chdir: /home/gekasologub
+        cmd: docker-compose -f docker-compose.yml up -d
+        chdir: /home/gekasologub/zabbix
         executable: /bin/bash

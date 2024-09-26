@@ -172,8 +172,9 @@ resource "yandex_compute_instance" "vm-zabbix" {
   }
 
   network_interface {
-    subnet_id          = yandex_vpc_subnet.public-subnet2.id
+    subnet_id          = yandex_vpc_subnet.public-subnet2.id #yandex_vpc_subnet.private-subnet2.id #
     security_group_ids = [yandex_vpc_security_group.nat-instance-sg.id]
+    nat                = true
   }
 
   metadata = {
@@ -227,8 +228,9 @@ resource "yandex_compute_instance" "vm-kibana" {
   }
 
   network_interface {
-    subnet_id          = yandex_vpc_subnet.public-subnet2.id
+    subnet_id          = yandex_vpc_subnet.public-subnet2.id #yandex_vpc_subnet.private-subnet2.id #
     security_group_ids = [yandex_vpc_security_group.nat-instance-sg.id]
+    nat                = true
   }
 
   metadata = {

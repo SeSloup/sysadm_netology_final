@@ -1,1 +1,1 @@
-external_ip_address_nat_instance = "84.201.129.112"
+external_ip_address_nat_instance = "51.250.4.124"

@@ -1,0 +1,81 @@
+---
+- name: Configure nginx
+  hosts: zabbix
+  remote_user: gekasologub
+  become: true
+  vars:
+    ansible_python_interpreter: /usr/bin/python3
+  tasks:
+    - name: Install UFW firewall
+      apt: name=ufw  
+      
+    - name: Enable UFW
+      community.general.ufw:
+        state: enabled
+        
+    - name: Allow all access to tcp port 10051
+      ufw:
+        rule: allow
+        port: '10051'
+        proto: tcp
+        
+    - name: Allow all access to tcp port 22
+      ufw:
+        rule: allow
+        port: ssh
+        proto: tcp
+        
+    - name: Download zabbix.deb
+      get_url:
+        url: https://repo.zabbix.com/zabbix/6.4/debian/pool/main/z/zabbix-release/zabbix-release_6.4-1%2Bdebian11_all.deb
+        dest: /home/gekasologub/zabbix.deb
+        mode: 'u+x,g+x'
+
+    - name: Install my_package
+      ansible.builtin.apt:
+        deb: /home/gekasologub/zabbix.deb     
+        
+    - name: Install zabbix-nginx-conf
+      ansible.builtin.apt:
+        deb: https://repo.zabbix.com/zabbix/4.4/debian/pool/main/z/zabbix/zabbix-nginx-conf_4.4.9-1%2Bstretch_all.deb         
+
+    - name: Install php8.1-pgsql
+      ansible.builtin.apt:
+        deb: http://ports.ubuntu.com/pool/main/p/php8.1/php8.1-pgsql_8.1.2-1ubuntu2_arm64.deb         
+        
+    - name: Install postgresql zabbix-server-pgsql zabbix-frontend-php zabbix-sql-scripts
+      ansible.builtin.apt:
+        pkg: 
+          - postgresql
+          - zabbix-server-pgsql
+          - zabbix-frontend-php
+          - zabbix-sql-scripts         
+        
+    - name: create postgres user zabbix
+      ansible.builtin.shell: 
+        cmd: sudo -u postgres createuser --pwprompt zabbix
+        executable: /bin/bash
+        
+    - name: create postgres db zabbix
+      ansible.builtin.shell: 
+        cmd: sudo -u postgres createdb -O zabbix zabbix
+        executable: /bin/bash                 
+        
+    - name: zabbix-sql-scripts
+      ansible.builtin.shell: 
+        cmd: sudo zcat /usr/share/zabbix-sql-scripts/postgresql/server.sql.gz | sudo -u zabbix psql zabbix
+        executable: /bin/bash        
+       
+    - name: restart service zabbix-server
+      ansible.builtin.service:
+        name: zabbix-server        
+        state: restarted   
+             
+    - name: enabled service zabbix-server
+      ansible.builtin.service:
+        name: zabbix-server        
+        state: enabled        
+        
+        
+              
+        

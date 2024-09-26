@@ -1,4 +1,4 @@
-version: "3.3"
+version: "3.5"
 
 services:
   filebeat:
@@ -10,15 +10,19 @@ services:
     user: root
     ports:
       - 9200:9200
-    config:
+    configs:
       - source: fb_config
         target: /usr/share/filebeat/filebeat.yml
+      - source: fb_ng_config
+        target: /usr/share/filebeat/nginx.yml
     volumes:
-      - ./filebeat/filebeat_data:/usr/share/filebeat/data
+      #- ./filebeat/filebeat_data:/usr/share/filebeat/data
       - /var/lib/docker:/var/lib/docker:ro
       - /var/run/docker.sock:/var/run/docker.sock
       - /var/log/nginx:/var/log/nginx
 
-config:
+configs:
   fb_config:
     file: ./filebeat/filebeat_cnf/filebeat.yml
+  fb_ng_config:
+    file: ./filebeat/filebeat_cnf/nginx.yml
