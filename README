@@ -1,7 +1,0 @@
-Все операции выполняются под пользователем gekasologub либо с повышением прав sudo
-
-1)./terrafotm/terraform_start.sh
-
-2)./terrafotm/add_ip_to_ssh_config.sh
-
-3) README ./ansible/0_ansible_etc

@@ -9,7 +9,7 @@ DIPLOMFOLDER="/home/eugene/Documents/Trash_virtual_machines/Диплом"
 USERansible="gekasologub"
 
 
-eval "IP=\"$(cat ${DIPLOMFOLDER}/terraform/file_nat_ip.txt | tr -d ' ')\""
+eval "IP=\"$(cat ${DIPLOMFOLDER}/terraform/file_nat_ip.txt | grep "external_ip_address_nat_instance" | tr -d ' ')\""
 
 echo $IP
 

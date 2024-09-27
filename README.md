@@ -1,1 +1,24 @@
-# sysadm_netology_final
+Все операции выполняются под пользователем gekasologub либо с повышением прав sudo
+
+Подготовительные работы:
+1) Создать пользователя gekasologub в группе sudo  
+2) Установить Ansible  
+3) Если отсутствует, Скачать terraform и поместить его в папку ./terraform  (в текущей сборке уже должно быть)  
+4) Сгенерировать ssh ключ ed25519 для пользователя gekasologub, который будет ипользоваться в дальнейшем  
+5) Иметь оплаченное облако YandexCloud. Получить yandex_cloud_token, folder_id, cloud_id, знать iso нужного образа ('Debian' image_id = "fd83df435lnopq6dbqdh")  
+
+
+Shell скрипты:
+1) ./terrafotm/terraform_start.sh - запуск терраформирования с указанными параметрами по *.tf текущей директории + запуск add_ip_to_ssh_config.sh  
+2) ./terrafotm/add_ip_to_ssh_config.sh - извлечение output полученных в процессе тераформирования в файлик file_nat_ip.txt (при необходимости)  
+3) ./terrafotm/terraform_destroy.sh - обратный процесс терраформирования (разрушения) удалить все созданные по текущим конфигурациям сущности (*на пракетике требуется дочищать вручную группы и машины привязанные к балансировщику. почему-то процесс уходит в цикл или подвисает)  
+
+
+Шаги:
+0) Произвести подготовительные работы  
+1) Перенести содержимое папки ./ansible/0_ansible_etc/ в /etc/ansible  
+2) Перенести содержимое папки ./ansible/2_ansible_roles в /etc/ansible/roles/  
+3) Выполнить команду: bash ./terrafotm/terraform_start.sh  
+4) Выполнить команду: ansible-playbook --check /etc/ansible/roles/role_diplom_netology/files/all_playbooks.yml  
+5) Выполнить команду: ansible-playbook /etc/ansible/roles/role_diplom_netology/files/all_playbooks.yml (* либо ansible-playbook --private-key=/home/gekasologub/.ssh/id_ed25519  --ssh-common-args='-o StrictHostKeyChecking=no' /etc/ansible/roles/role_diplom_netology/files/all_playbooks.yml)  
+6) Инфраструктура сформирована. Теперь ручная настройка в интерфейсах программ (zabbix, kibana), доступных по публичным адресам  
