@@ -13,10 +13,10 @@
       community.general.ufw:
         state: enabled
         
-    - name: Allow all access to tcp port 10051
+    - name: Allow all access to tcp port 10050 for agent
       ufw:
         rule: allow
-        port: '10051'
+        port: '10050'
         proto: tcp
         
     - name: Allow all access to tcp port 22
@@ -36,11 +36,24 @@
         path: /usr/local/bin/docker-compose
         owner: gekasologub
         group: gekasologub
-        
+       
     - name: copy compose
       copy:
         src: zabbix.zip
         dest: /home/gekasologub/
+
+    - name: Change file zabbix.zip ownership, group and permissions
+      ansible.builtin.file:
+        path: /home/gekasologub/zabbix.zip
+        owner: gekasologub
+        group: gekasologub
+        mode: 0755
+         
+    - name: Extract zabbix.zip
+      ansible.builtin.unarchive:
+        src: /home/gekasologub/zabbix.zip
+        dest: /home/gekasologub
+        remote_src: yes
         
     - name: Run a command docker-compose
       ansible.builtin.shell: 

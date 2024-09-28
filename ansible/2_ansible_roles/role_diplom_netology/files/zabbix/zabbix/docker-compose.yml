@@ -36,24 +36,6 @@ services:
     networks:
       - network-zabbix
 
-  zabbix-agent:
-    image:  ${ZABBIX_AGENT_IMAGE:-zabbix/zabbix-agent:ubuntu-7.0-latest}
-    container_name: agent
-    restart: unless-stopped
-    ports:
-      - "10049:10050"
-    environment:
-      ZBX_ACTIVE_ALLOW: "false"
-      TZ: Moscow
-      ZBX_SERVER_HOST: zabbix-server
-      ZBX_SERVER_PORT: 10051
-      ZBX_HOSTNAME: zabbix-agent
-      ZBX_HOSTNAMEITEM: system.hostname
-    depends_on:
-      - zabbix-server
-    networks:
-      - network-zabbix
-
   postgres:
     image: ${POSTGRES_IMAGE:-postgres:latest}
     container_name: postgres

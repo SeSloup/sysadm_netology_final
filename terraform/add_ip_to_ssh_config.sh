@@ -4,12 +4,12 @@ if [ "$EUID" -ne 0 ]
   exit
 fi
 
-DIPLOMFOLDER="/home/eugene/Documents/Trash_virtual_machines/Диплом"
+DIPLOMFOLDER=$(pwd)
 
 USERansible="gekasologub"
 
 
-eval "IP=\"$(cat ${DIPLOMFOLDER}/terraform/file_nat_ip.txt | grep "external_ip_address_nat_instance" | tr -d ' ')\""
+eval "IP=\"$(cat ${DIPLOMFOLDER}/file_nat_ip.txt | grep "external_ip_address_nat_instance" | tr -d ' ')\""
 
 echo $IP
 

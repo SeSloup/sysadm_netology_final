@@ -161,7 +161,7 @@ resource "yandex_compute_instance" "vm-zabbix" {
   resources {
     cores         = var.cores
     memory        = var.memory
-    core_fraction = var.core_fraction //использование процессора 20% (делимся ресурсами) - для экономии
+    #core_fraction = var.core_fraction //использование процессора 20% (делимся ресурсами) - для экономии
   }
   boot_disk {
     initialize_params {
@@ -217,7 +217,7 @@ resource "yandex_compute_instance" "vm-kibana" {
   resources {
     cores         = var.cores
     memory        = var.memory
-    core_fraction = var.core_fraction //использование процессора 20% (делимся ресурсами) - для экономии
+    #core_fraction = var.core_fraction //использование процессора 20% (делимся ресурсами) - для экономии
   }
   boot_disk {
     initialize_params {
