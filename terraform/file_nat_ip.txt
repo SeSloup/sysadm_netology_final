@@ -1,39 +1,4 @@
-external_ip_address_alb_load_balancer = {
-  "endpoint" = tolist([
-    {
-      "address" = tolist([
-        {
-          "external_ipv4_address" = tolist([
-            {
-              "address" = "51.250.33.7"
-            },
-          ])
-          "external_ipv6_address" = tolist([])
-          "internal_ipv4_address" = tolist([])
-        },
-      ])
-      "ports" = tolist([
-        80,
-      ])
-    },
-  ])
-  "http" = tolist([
-    {
-      "handler" = tolist([
-        {
-          "allow_http10" = false
-          "http2_options" = tolist([])
-          "http_router_id" = "ds7rolhnof6ui83t8pp9"
-          "rewrite_request_id" = false
-        },
-      ])
-      "redirects" = tolist([])
-    },
-  ])
-  "name" = "alb-listener"
-  "stream" = tolist([])
-  "tls" = tolist([])
-}
-external_ip_address_nat_instance = "89.169.147.168"
-external_ip_address_vm_kibana = "89.169.161.75"
-external_ip_address_vm_zabbix = "89.169.161.89"
+external_ip_address_alb_load_balancer = "84.201.168.106"
+external_ip_address_nat_instance = "89.169.148.251"
+external_ip_address_vm_kibana = "158.160.16.204"
+external_ip_address_vm_zabbix = "130.193.54.181"

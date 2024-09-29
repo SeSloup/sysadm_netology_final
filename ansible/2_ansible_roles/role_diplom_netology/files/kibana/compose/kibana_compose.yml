@@ -1,12 +1,16 @@
 version: "3.3"
-#https://github.com/codewithrajranjan/awesome-docker-compose/blob/master/ecosystem/elasticsearch-kibana-docker-compose.yml
+
 services:
   kibana:
     container_name: kibana
+    hostname: kibana
     image: public.ecr.aws/elastic/kibana:8.15.1
-    environment:
-      - ELASTICSEARCH_HOSTS=vm-elk.ru-central1.internal:9200
+    configs:
+      - source: kibana_cnf
+        target: /usr/share/kibana/config/kibana.yml
     ports:
-      - 5601:5601
-
-
+      - 80:5601
+      - 9200:9200
+configs:
+  kibana_cnf:
+    file: ./config/kibana.yml

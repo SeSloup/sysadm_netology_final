@@ -1,0 +1,488 @@
+ansible-playbook /etc/ansible/roles/role_diplom_netology/files/all_playbooks.yml 
+ ________________________
+< PLAY [Configure nginx] >
+ ------------------------
+        \   ^__^
+         \  (oo)\_______
+            (__)\       )\/\
+                ||----w |
+                ||     ||
+
+ ______________________
+< TASK [install nginx] >
+ ----------------------
+        \   ^__^
+         \  (oo)\_______
+            (__)\       )\/\
+                ||----w |
+                ||     ||
+
+ok: [vm-nginx-1.ru-central1.internal]
+ok: [vm-nginx-2.ru-central1.internal]
+ _____________________________
+< TASK [Install UFW firewall] >
+ -----------------------------
+        \   ^__^
+         \  (oo)\_______
+            (__)\       )\/\
+                ||----w |
+                ||     ||
+
+ok: [vm-nginx-2.ru-central1.internal]
+ok: [vm-nginx-1.ru-central1.internal]
+ ___________________
+< TASK [Enable UFW] >
+ -------------------
+        \   ^__^
+         \  (oo)\_______
+            (__)\       )\/\
+                ||----w |
+                ||     ||
+
+ok: [vm-nginx-1.ru-central1.internal]
+ok: [vm-nginx-2.ru-central1.internal]
+ ________________________________________
+< TASK [Allow all access to tcp port 80] >
+ ----------------------------------------
+        \   ^__^
+         \  (oo)\_______
+            (__)\       )\/\
+                ||----w |
+                ||     ||
+
+ok: [vm-nginx-1.ru-central1.internal]
+ok: [vm-nginx-2.ru-central1.internal]
+ ________________________________________
+< TASK [Allow all access to tcp port 22] >
+ ----------------------------------------
+        \   ^__^
+         \  (oo)\_______
+            (__)\       )\/\
+                ||----w |
+                ||     ||
+
+ok: [vm-nginx-1.ru-central1.internal]
+ok: [vm-nginx-2.ru-central1.internal]
+ __________________
+< TASK [copy html] >
+ ------------------
+        \   ^__^
+         \  (oo)\_______
+            (__)\       )\/\
+                ||----w |
+                ||     ||
+
+ok: [vm-nginx-1.ru-central1.internal]
+ok: [vm-nginx-2.ru-central1.internal]
+ ____________________
+< TASK [copy config] >
+ --------------------
+        \   ^__^
+         \  (oo)\_______
+            (__)\       )\/\
+                ||----w |
+                ||     ||
+
+ok: [vm-nginx-1.ru-central1.internal]
+ok: [vm-nginx-2.ru-central1.internal]
+ ________________________
+< TASK [restart service] >
+ ------------------------
+        \   ^__^
+         \  (oo)\_______
+            (__)\       )\/\
+                ||----w |
+                ||     ||
+
+changed: [vm-nginx-1.ru-central1.internal]
+changed: [vm-nginx-2.ru-central1.internal]
+ _______________________________
+< TASK [Install docker-compose] >
+ -------------------------------
+        \   ^__^
+         \  (oo)\_______
+            (__)\       )\/\
+                ||----w |
+                ||     ||
+
+ok: [vm-nginx-1.ru-central1.internal]
+ok: [vm-nginx-2.ru-central1.internal]
+ _____________________________________________________
+< TASK [Change file ownership, group and permissions] >
+ -----------------------------------------------------
+        \   ^__^
+         \  (oo)\_______
+            (__)\       )\/\
+                ||----w |
+                ||     ||
+
+ok: [vm-nginx-1.ru-central1.internal]
+ok: [vm-nginx-2.ru-central1.internal]
+ _____________________
+< TASK [copy compose] >
+ ---------------------
+        \   ^__^
+         \  (oo)\_______
+            (__)\       )\/\
+                ||----w |
+                ||     ||
+
+changed: [vm-nginx-1.ru-central1.internal]
+changed: [vm-nginx-2.ru-central1.internal]
+ ______________________________________________
+< TASK [Change permission on myScript.sh file] >
+ ----------------------------------------------
+        \   ^__^
+         \  (oo)\_______
+            (__)\       )\/\
+                ||----w |
+                ||     ||
+
+changed: [vm-nginx-1.ru-central1.internal]
+changed: [vm-nginx-2.ru-central1.internal]
+ ____________________________________________________
+< TASK [Change permission on filebeat_start.sh file] >
+ ----------------------------------------------------
+        \   ^__^
+         \  (oo)\_______
+            (__)\       )\/\
+                ||----w |
+                ||     ||
+
+changed: [vm-nginx-1.ru-central1.internal]
+changed: [vm-nginx-2.ru-central1.internal]
+ _____________________________________
+< TASK [Run a command docker-compose] >
+ -------------------------------------
+        \   ^__^
+         \  (oo)\_______
+            (__)\       )\/\
+                ||----w |
+                ||     ||
+
+changed: [vm-nginx-2.ru-central1.internal]
+changed: [vm-nginx-1.ru-central1.internal]
+ __________________________
+< TASK [zabbix_agent.conf] >
+ --------------------------
+        \   ^__^
+         \  (oo)\_______
+            (__)\       )\/\
+                ||----w |
+                ||     ||
+
+ok: [vm-nginx-1.ru-central1.internal]
+changed: [vm-nginx-2.ru-central1.internal]
+ _____________________________________
+< TASK [restart service zabbix-agent] >
+ -------------------------------------
+        \   ^__^
+         \  (oo)\_______
+            (__)\       )\/\
+                ||----w |
+                ||     ||
+
+changed: [vm-nginx-1.ru-central1.internal]
+changed: [vm-nginx-2.ru-central1.internal]
+ ________________________
+< PLAY [Configure nginx] >
+ ------------------------
+        \   ^__^
+         \  (oo)\_______
+            (__)\       )\/\
+                ||----w |
+                ||     ||
+
+ ___________________
+< TASK [Enable UFW] >
+ -------------------
+        \   ^__^
+         \  (oo)\_______
+            (__)\       )\/\
+                ||----w |
+                ||     ||
+
+ok: [vm-elk.ru-central1.internal]
+ __________________________________________
+< TASK [Allow all access to tcp port 9200] >
+ ------------------------------------------
+        \   ^__^
+         \  (oo)\_______
+            (__)\       )\/\
+                ||----w |
+                ||     ||
+
+ok: [vm-elk.ru-central1.internal]
+ ________________________________________
+< TASK [Allow all access to tcp port 22] >
+ ----------------------------------------
+        \   ^__^
+         \  (oo)\_______
+            (__)\       )\/\
+                ||----w |
+                ||     ||
+
+ok: [vm-elk.ru-central1.internal]
+ _______________________________
+< TASK [Install docker-compose] >
+ -------------------------------
+        \   ^__^
+         \  (oo)\_______
+            (__)\       )\/\
+                ||----w |
+                ||     ||
+
+ok: [vm-elk.ru-central1.internal]
+ _____________________________________________________
+< TASK [Change file ownership, group and permissions] >
+ -----------------------------------------------------
+        \   ^__^
+         \  (oo)\_______
+            (__)\       )\/\
+                ||----w |
+                ||     ||
+
+ok: [vm-elk.ru-central1.internal]
+ _____________________
+< TASK [copy compose] >
+ ---------------------
+        \   ^__^
+         \  (oo)\_______
+            (__)\       )\/\
+                ||----w |
+                ||     ||
+
+ok: [vm-elk.ru-central1.internal]
+ _____________________________________
+< TASK [Run a command docker-compose] >
+ -------------------------------------
+        \   ^__^
+         \  (oo)\_______
+            (__)\       )\/\
+                ||----w |
+                ||     ||
+
+changed: [vm-elk.ru-central1.internal]
+ ________________________
+< PLAY [Configure nginx] >
+ ------------------------
+        \   ^__^
+         \  (oo)\_______
+            (__)\       )\/\
+                ||----w |
+                ||     ||
+
+ ___________________
+< TASK [Enable UFW] >
+ -------------------
+        \   ^__^
+         \  (oo)\_______
+            (__)\       )\/\
+                ||----w |
+                ||     ||
+
+ok: [vm-kibana.ru-central1.internal]
+ ________________________________________
+< TASK [Allow all access to tcp port 80] >
+ ----------------------------------------
+        \   ^__^
+         \  (oo)\_______
+            (__)\       )\/\
+                ||----w |
+                ||     ||
+
+ok: [vm-kibana.ru-central1.internal]
+ __________________________________________
+< TASK [Allow all access to tcp port 9200] >
+ ------------------------------------------
+        \   ^__^
+         \  (oo)\_______
+            (__)\       )\/\
+                ||----w |
+                ||     ||
+
+ok: [vm-kibana.ru-central1.internal]
+ ________________________________________
+< TASK [Allow all access to tcp port 22] >
+ ----------------------------------------
+        \   ^__^
+         \  (oo)\_______
+            (__)\       )\/\
+                ||----w |
+                ||     ||
+
+ok: [vm-kibana.ru-central1.internal]
+ _______________________________
+< TASK [Install docker-compose] >
+ -------------------------------
+        \   ^__^
+         \  (oo)\_______
+            (__)\       )\/\
+                ||----w |
+                ||     ||
+
+ok: [vm-kibana.ru-central1.internal]
+ _____________________________________________________
+< TASK [Change file ownership, group and permissions] >
+ -----------------------------------------------------
+        \   ^__^
+         \  (oo)\_______
+            (__)\       )\/\
+                ||----w |
+                ||     ||
+
+ok: [vm-kibana.ru-central1.internal]
+ _____________________
+< TASK [copy compose] >
+ ---------------------
+        \   ^__^
+         \  (oo)\_______
+            (__)\       )\/\
+                ||----w |
+                ||     ||
+
+ok: [vm-kibana.ru-central1.internal]
+ _____________________________________
+< TASK [Run a command docker-compose] >
+ -------------------------------------
+        \   ^__^
+         \  (oo)\_______
+            (__)\       )\/\
+                ||----w |
+                ||     ||
+
+changed: [vm-kibana.ru-central1.internal]
+ ________________________
+< PLAY [Configure nginx] >
+ ------------------------
+        \   ^__^
+         \  (oo)\_______
+            (__)\       )\/\
+                ||----w |
+                ||     ||
+
+ _____________________________
+< TASK [Install UFW firewall] >
+ -----------------------------
+        \   ^__^
+         \  (oo)\_______
+            (__)\       )\/\
+                ||----w |
+                ||     ||
+
+ok: [vm-zabbix.ru-central1.internal]
+ ___________________
+< TASK [Enable UFW] >
+ -------------------
+        \   ^__^
+         \  (oo)\_______
+            (__)\       )\/\
+                ||----w |
+                ||     ||
+
+ok: [vm-zabbix.ru-central1.internal]
+ _____________________________________________________
+< TASK [Allow all access to tcp port 10050 for agent] >
+ -----------------------------------------------------
+        \   ^__^
+         \  (oo)\_______
+            (__)\       )\/\
+                ||----w |
+                ||     ||
+
+ok: [vm-zabbix.ru-central1.internal]
+ ________________________________________
+< TASK [Allow all access to tcp port 80] >
+ ----------------------------------------
+        \   ^__^
+         \  (oo)\_______
+            (__)\       )\/\
+                ||----w |
+                ||     ||
+
+ok: [vm-zabbix.ru-central1.internal]
+ ________________________________________
+< TASK [Allow all access to tcp port 22] >
+ ----------------------------------------
+        \   ^__^
+         \  (oo)\_______
+            (__)\       )\/\
+                ||----w |
+                ||     ||
+
+ok: [vm-zabbix.ru-central1.internal]
+ _______________________________
+< TASK [Install docker-compose] >
+ -------------------------------
+        \   ^__^
+         \  (oo)\_______
+            (__)\       )\/\
+                ||----w |
+                ||     ||
+
+ok: [vm-zabbix.ru-central1.internal]
+ _____________________________________________________
+< TASK [Change file ownership, group and permissions] >
+ -----------------------------------------------------
+        \   ^__^
+         \  (oo)\_______
+            (__)\       )\/\
+                ||----w |
+                ||     ||
+
+ok: [vm-zabbix.ru-central1.internal]
+ _____________________
+< TASK [copy compose] >
+ ---------------------
+        \   ^__^
+         \  (oo)\_______
+            (__)\       )\/\
+                ||----w |
+                ||     ||
+
+ok: [vm-zabbix.ru-central1.internal]
+ ___________________________________________________
+/ TASK [Change file zabbix.zip ownership, group and \
+\ permissions]                                      /
+ ---------------------------------------------------
+        \   ^__^
+         \  (oo)\_______
+            (__)\       )\/\
+                ||----w |
+                ||     ||
+
+ok: [vm-zabbix.ru-central1.internal]
+ ___________________________
+< TASK [Extract zabbix.zip] >
+ ---------------------------
+        \   ^__^
+         \  (oo)\_______
+            (__)\       )\/\
+                ||----w |
+                ||     ||
+
+ok: [vm-zabbix.ru-central1.internal]
+ _____________________________________
+< TASK [Run a command docker-compose] >
+ -------------------------------------
+        \   ^__^
+         \  (oo)\_______
+            (__)\       )\/\
+                ||----w |
+                ||     ||
+
+changed: [vm-zabbix.ru-central1.internal]
+ ____________
+< PLAY RECAP >
+ ------------
+        \   ^__^
+         \  (oo)\_______
+            (__)\       )\/\
+                ||----w |
+                ||     ||
+
+vm-elk.ru-central1.internal : ok=7    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+vm-kibana.ru-central1.internal : ok=8    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+vm-nginx-1.ru-central1.internal : ok=16   changed=6    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+vm-nginx-2.ru-central1.internal : ok=16   changed=7    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+vm-zabbix.ru-central1.internal : ok=11   changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0 

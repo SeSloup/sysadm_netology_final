@@ -41,4 +41,23 @@ Zabbix-server:
 - Удостовериваемся, что пинг проходит
 - Ждем когда в колонке Availiable загорится зеленый индикатор, который уведомит об установлении контакта и начале обмена.
 
-3) Переходим в Dashboards и создаем отображение необходимых нам метрик.
+3) Переходим в Dashboards и создаем отображение необходимых нам метрик. (https://www.zabbix.com/documentation/5.2/ru/manual/config/templates_out_of_the_box)
+
+
+Kibana
+
+0) Проходим по публичному адресу и подключаем кибану к эластику:
+    - Выбрать подключение по адресу. Ввести: http://vm-elk:9200
+    - Пройти на сервер: ssh -J bastion_netology gekasologub@vm-kibana
+    - Получить код: docker exec <id container/ or name> /bin/kibana-verification-code (name: kibana)
+1) 
+
+----
+----
+*Утилиты проверки сети которые пригодились в проекте nmap, netcat, ufw
+
+nmap <vm-hostname> -Pn
+nc -vz <vm-hostname> <port>
+ufw status
+
+curl <ip application load balancer>

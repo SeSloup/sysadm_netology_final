@@ -69,6 +69,14 @@
         owner: root
         group: root
         mode: 0755
+
+    - name: Change permission on filebeat_start.sh file
+      file:
+        path: /home/gekasologub/filebeat/filebeat_start.sh
+        state: file
+        owner: root
+        group: root
+        mode: 0777
         
     - name: Run a command docker-compose
       ansible.builtin.shell: 

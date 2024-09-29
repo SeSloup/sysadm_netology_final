@@ -7,4 +7,4 @@ image_id      = "fd83df435lnopq6dbqdh" #
 count_nginx = 2
 for_vars    = 0
 
-folder_id = "b1g4f73qtp3tnt39eta9"
+folder_id = "b1gisbuluni0gkvcaun4" #id of cataloge inside cloud

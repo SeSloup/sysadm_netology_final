@@ -90,16 +90,9 @@ resource "yandex_vpc_security_group" "nat-instance-sg" {
 
   ingress {
     protocol       = "TCP"
-    description    = "ext-https-zabbix"
+    description    = "ext-https-nginx from zabbix-agent to zabbix server"
     v4_cidr_blocks = ["0.0.0.0/0"]
-    port           = 1111
-  }
-
-  ingress {
-    protocol       = "TCP"
-    description    = "ext-https-kibana"
-    v4_cidr_blocks = ["0.0.0.0/0"]
-    port           = 2222
+    port           = 10050
   }
 
   ingress {
@@ -108,6 +101,7 @@ resource "yandex_vpc_security_group" "nat-instance-sg" {
     v4_cidr_blocks = ["0.0.0.0/0"]
     port           = 9200
   }
+
 
 /*    ingress {
     protocol       = "ANY"
@@ -140,6 +134,20 @@ resource "yandex_vpc_security_group" "nat-instance-sg2" {
     v4_cidr_blocks = ["0.0.0.0/0"]
     port           = 80
   }
+
+  ingress {
+    protocol       = "TCP"
+    description    = "ext-http-zabix"
+    v4_cidr_blocks = ["0.0.0.0/0"]
+    port           = 10050
+  }
+
+  ingress {
+    protocol       = "TCP"
+    description    = "ext-http-zabix"
+    v4_cidr_blocks = ["0.0.0.0/0"]
+    port           = 10051
+  }
 /*
     ingress {
     protocol       = "ANY"
@@ -161,7 +169,7 @@ resource "yandex_compute_instance" "vm-zabbix" {
   resources {
     cores         = var.cores
     memory        = var.memory
-    #core_fraction = var.core_fraction //использование процессора 20% (делимся ресурсами) - для экономии
+    core_fraction = var.core_fraction //использование процессора 20% (делимся ресурсами) - для экономии
   }
   boot_disk {
     initialize_params {
@@ -217,7 +225,7 @@ resource "yandex_compute_instance" "vm-kibana" {
   resources {
     cores         = var.cores
     memory        = var.memory
-    #core_fraction = var.core_fraction //использование процессора 20% (делимся ресурсами) - для экономии
+    core_fraction = var.core_fraction //использование процессора 20% (делимся ресурсами) - для экономии
   }
   boot_disk {
     initialize_params {

@@ -14,19 +14,19 @@ variable "domain" {
 # Добавление прочих переменных
 
 locals {
-  sa_name = "sa"
+  sa_name = "sanetology"
 }
 
 # Настройка провайдера
 
-resource "yandex_iam_service_account" "sa" {
+resource "yandex_iam_service_account" "sanetology" {
   name = local.sa_name
 }
 
 resource "yandex_resourcemanager_folder_iam_member" "editor" {
   folder_id = var.folder_id
   role      = "editor"
-  member    = "serviceAccount:${yandex_iam_service_account.sa.id}"
+  member    = "serviceAccount:${yandex_iam_service_account.sanetology.id}"
 }
 
 
@@ -105,10 +105,10 @@ resource "yandex_compute_image" "lemp" {
 */
 resource "yandex_compute_instance_group" "alb-vm-group" {
   name               = "alb-vm-group"
-  service_account_id = yandex_iam_service_account.sa.id
+  service_account_id = yandex_iam_service_account.sanetology.id
   instance_template {
         #    platform_id        = "standard-v2"
-    service_account_id = yandex_iam_service_account.sa.id
+    service_account_id = yandex_iam_service_account.sanetology.id
     name = "vm-nginx-{instance.index}"
  
     resources {
@@ -144,7 +144,7 @@ resource "yandex_compute_instance_group" "alb-vm-group" {
 
   scale_policy {
     fixed_scale {
-      size = 2
+      size = var.count_nginx
     }
   }
 

@@ -2,27 +2,20 @@ version: "3.5"
 
 services:
   filebeat:
+    hostname: filebeat_nginx
     container_name: filebeat_nginx
-    build:
-      context: ./filebeat/
+    image: public.ecr.aws/elastic/filebeat:8.15.1
     restart: on-failure
-    command: --strict.perms=false
+    command: ["filebeat_start.sh"]
     user: root
     ports:
       - 9200:9200
-    configs:
-      - source: fb_config
-        target: /usr/share/filebeat/filebeat.yml
-      - source: fb_ng_config
-        target: /usr/share/filebeat/nginx.yml
     volumes:
-      #- ./filebeat/filebeat_data:/usr/share/filebeat/data
+      - ./filebeat/filebeat_start.sh:/usr/share/filebeat/filebeat_start.sh
+      - ./filebeat/filebeat_cnf/filebeat.yml:/usr/share/filebeat/filebeat.yml
+      - ./filebeat/filebeat_cnf/nginx.yml:/usr/share/filebeat/modules.d/nginx.yml
       - /var/lib/docker:/var/lib/docker:ro
       - /var/run/docker.sock:/var/run/docker.sock
       - /var/log/nginx:/var/log/nginx
 
-configs:
-  fb_config:
-    file: ./filebeat/filebeat_cnf/filebeat.yml
-  fb_ng_config:
-    file: ./filebeat/filebeat_cnf/nginx.yml
+

@@ -10,7 +10,7 @@
       community.general.ufw:
         state: enabled
         
-    - name: Allow all access to tcp port 80
+    - name: Allow all access to tcp port 9200
       ufw:
         rule: allow
         port: '9200'

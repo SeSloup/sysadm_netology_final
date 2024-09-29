@@ -10,11 +10,17 @@
     - name: Enable UFW
       community.general.ufw:
         state: enabled
-        
-    - name: Allow all access to tcp port 5601
+
+    - name: Allow all access to tcp port 80
       ufw:
         rule: allow
-        port: '5601'
+        port: '80'
+        proto: tcp
+        
+    - name: Allow all access to tcp port 9200
+      ufw:
+        rule: allow
+        port: '9200'
         proto: tcp
         
     - name: Allow all access to tcp port 22
@@ -36,9 +42,9 @@
         group: gekasologub
         
     - name: copy compose
-      ansible.builtin.template:
-        src: compose/kibana_compose.yml
-        dest: /home/gekasologub/kibana_compose.yml
+      copy:
+        src: ./compose/
+        dest: /home/gekasologub/
         
     - name: Run a command docker-compose
       ansible.builtin.shell: 
