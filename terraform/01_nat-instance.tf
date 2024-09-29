@@ -92,7 +92,7 @@ resource "yandex_vpc_security_group" "nat-instance-sg" {
     protocol       = "TCP"
     description    = "ext-https-nginx from zabbix-agent to zabbix server"
     v4_cidr_blocks = ["0.0.0.0/0"]
-    port           = 10050
+    port           = 10051
   }
 
   ingress {

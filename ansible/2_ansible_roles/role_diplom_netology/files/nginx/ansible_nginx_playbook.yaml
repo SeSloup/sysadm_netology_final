@@ -61,8 +61,13 @@
       copy:
         src: ./compose/
         dest: /home/gekasologub/
+
+    - name: copy filebeat.yml
+      ansible.builtin.template:
+        src: filebeat.yml.j2
+        dest: /home/gekasologub/filebeat/filebeat_cnf/filebeat.yml 
         
-    - name: Change permission on myScript.sh file
+    - name: Change permission on filebeat.yml file
       file:
         path: /home/gekasologub/filebeat/filebeat_cnf/filebeat.yml
         state: file

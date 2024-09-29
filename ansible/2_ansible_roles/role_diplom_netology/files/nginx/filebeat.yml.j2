@@ -1,0 +1,13 @@
+filebeat.modules:
+- module: nginx
+  access:
+  error:
+
+setup.template.name: "filebeat-{{ inventory_hostname }}"
+setup.template.pattern: "filebeat-{{ inventory_hostname }}"
+
+output.elasticsearch:
+  index: "filebeat-{{ inventory_hostname }}"
+  hosts: ["vm-elk.ru-central1.internal:9200"]
+setup.kibana:
+  host: "vm-kibana.ru-central1.internal:5601"

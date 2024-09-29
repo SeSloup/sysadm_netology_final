@@ -97,6 +97,13 @@ resource "yandex_vpc_security_group" "alb-vm-sg" {
     v4_cidr_blocks = ["0.0.0.0/0"]
     port           = 22
   }
+
+  ingress {
+    protocol       = "TCP"
+    description    = "ssh"
+    v4_cidr_blocks = ["0.0.0.0/0"]
+    port           = 10050
+  }
 }
 /*
 resource "yandex_compute_image" "lemp" {
