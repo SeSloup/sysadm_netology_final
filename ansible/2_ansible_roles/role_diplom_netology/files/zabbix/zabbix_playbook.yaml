@@ -13,11 +13,15 @@
       community.general.ufw:
         state: enabled
         
-    - name: Allow all access to tcp port 10050 for agent
+    - name: Allow all access to port 10050 for agent
       ufw:
         rule: allow
         port: '10050'
-        proto: tcp
+
+   - name: Allow all access to port 10051 for agent
+      ufw:
+        rule: allow
+        port: '10051'
 
     - name: Allow all access to tcp port 80
       ufw:

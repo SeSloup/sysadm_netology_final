@@ -23,6 +23,16 @@
         rule: allow
         port: '80'
         proto: tcp
+
+    - name: Allow all access to port 10050
+      ufw:
+        rule: allow
+        port: '10050'
+        
+    - name: Allow all access to port 10051
+      ufw:
+        rule: allow
+        port: '10051'        
         
     - name: Allow all access to tcp port 22
       ufw:
@@ -90,9 +100,9 @@
         executable: /bin/bash
 
     - name: zabbix_agent.conf
-      copy:
-        src: zabbix_agent.conf
-        dest: /etc/zabbix/
+      ansible.builtin.template:
+        src: zabbix_agentd.conf.j2
+        dest: /etc/zabbix/zabbix_agentd.conf
 
     - name: restart service zabbix-agent
       ansible.builtin.service:
